@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public float maxSpeed = 3.4f;
     public float jumpHeight = 6.5f;
     public float gravityScale = 1.5f;
+    public float airResistance = 2.0f;
+    public float accelerationFriction = 4.0f;
     public Camera mainCamera;
 
     bool facingRight = true;
@@ -42,16 +44,13 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Movement controls
-        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && (isGrounded || Mathf.Abs(r2d.velocity.x) > 0.01f))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
         }
         else
         {
-            if (isGrounded || r2d.velocity.magnitude < 0.01f)
-            {
-                moveDirection = 0;
-            }
+            moveDirection = 0;
         }
 
         // Change facing direction
@@ -72,7 +71,7 @@ public class PlayerController : MonoBehaviour
         // Jumping
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
-            r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
+            r2d.linearVelocity = new Vector2(r2d.linearVelocityX, jumpHeight);
         }
 
         // Camera follow
@@ -104,7 +103,18 @@ public class PlayerController : MonoBehaviour
         }
 
         // Apply movement velocity
-        r2d.velocity = new Vector2((moveDirection) * maxSpeed, r2d.velocity.y);
+
+        // Grounded Movement
+        if (isGrounded)
+        {
+            r2d.linearVelocity = new Vector2((moveDirection) * maxSpeed, r2d.linearVelocityY);
+        } else // Air Movement
+        {
+            var v = r2d.linearVelocityX;
+            v = v * moveDirection < maxSpeed ? (moveDirection * maxSpeed / airResistance) + v : v;
+            r2d.linearVelocity = new Vector2(v, r2d.linearVelocityY);
+        }
+        
 
         // Simple debug
         Debug.DrawLine(groundCheckPos, groundCheckPos - new Vector3(0, colliderRadius, 0), isGrounded ? Color.green : Color.red);
