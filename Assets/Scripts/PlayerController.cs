@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -15,10 +17,9 @@ public class PlayerController : MonoBehaviour
     public float gravityScale = 1.5f;
     public float airResistance = 2.0f;
     public float accelerationFriction = 4.0f;
+    public bool enableDebug;
     public Camera mainCamera;
-
     public GameObject grapplePrefab;
-
     private bool canGrapple = true;
 
     bool facingRight = true;
@@ -54,7 +55,7 @@ public class PlayerController : MonoBehaviour
         {
             GameObject grapple = Instantiate(grapplePrefab) as GameObject;
             //GameObject grappleString - TODO: IMPLIMENT THE GRAPPLE STRING 
-            grapple.GetComponent<Grapple>().originPoint = transform.position;
+            grapple.GetComponent<Grapple>().directionVector = Input.mousePosition - transform.position;
         }
 
         // Movement controls
@@ -63,7 +64,7 @@ public class PlayerController : MonoBehaviour
             moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
         }
         else
-        {
+        { 
             moveDirection = 0;
         }
 
