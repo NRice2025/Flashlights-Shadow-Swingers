@@ -231,9 +231,7 @@ MonoBehaviour:
   gravityScale: 5
   airResistance: 4
   accelerationFriction: 1
-  enableDebug: 0
   mainCamera: {fileID: 1430368236}
-  grapplePrefab: {fileID: 1987967496219726391, guid: cc47de38190d2e0489cf4ed1a5868174, type: 3}
 --- !u!70 &85687053
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
