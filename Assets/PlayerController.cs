@@ -15,9 +15,6 @@ public class PlayerController : MonoBehaviour
     public float accelerationFriction = 4.0f;
     public Camera mainCamera;
 
-    public Vector3 spawnPoint;
-    public GameObject flashLight;
-    public bool isLightOn = true;
     bool facingRight = true;
     float moveDirection = 0;
     bool isGrounded = false;
@@ -36,7 +33,7 @@ public class PlayerController : MonoBehaviour
         r2d.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         r2d.gravityScale = gravityScale;
         facingRight = t.localScale.x > 0;
-        transform.position = spawnPoint;
+
         if (mainCamera)
         {
             cameraPos = mainCamera.transform.position;
@@ -69,14 +66,6 @@ public class PlayerController : MonoBehaviour
                 facingRight = false;
                 t.localScale = new Vector3(-Mathf.Abs(t.localScale.x), t.localScale.y, t.localScale.z);
             }
-            
-        }
-
-        // Toggle flashlight
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            isLightOn = !isLightOn;
-            flashLight.SetActive(isLightOn);
         }
 
         // Jumping
