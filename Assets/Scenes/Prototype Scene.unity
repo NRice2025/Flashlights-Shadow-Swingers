@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 331773262}
   - component: {fileID: 331773266}
   - component: {fileID: 331773265}
-  - component: {fileID: 331773264}
+  - component: {fileID: 331773267}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -399,24 +399,6 @@ Transform:
   - {fileID: 519420032}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &331773264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 331773261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e48bee931d032442841f9d95c80a679, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  maxSpeed: 6
-  jumpHeight: 10
-  gravityScale: 2
-  airResistance: 2
-  accelerationFriction: 4
-  mainCamera: {fileID: 0}
 --- !u!70 &331773265
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -481,6 +463,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &331773267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331773261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c887c54b3d44aa438ecc3785b9ac7c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  maxSpeed: 3.4
+  jumpHeight: 6.5
+  gravityScale: 1.5
+  airResistance: 2
+  accelerationFriction: 4
+  mainCamera: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
