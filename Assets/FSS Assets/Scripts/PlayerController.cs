@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject grapplePrefab;
     public float hookedVelocityDecay;
+    public float grappleMoveReduction = 0.02f;
+    public float reelVelocity = 0.2f;
 
     private GameObject grapple;
     private float grappleDistance;
@@ -95,7 +97,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.R) && !grapple.IsUnityNull() && grapple.GetComponent<Rigidbody2D>().IsUnityNull())
         {
             grappleDistance = Mathf.Min((grapple.transform.position - transform.position).magnitude, grappleDistance);
-            GetComponent<Rigidbody2D>().linearVelocity = (grapple.transform.position - transform.position).normalized * 10;
+            Vector2 v = (grapple.transform.position - transform.position).normalized * reelVelocity;
+            r2d.linearVelocity = v + r2d.linearVelocity * 0.5f;
         }
         // Destroy Grapple (Release G or Left Mouse Button)
         if ((Input.GetKeyUp(KeyCode.G) || Input.GetMouseButtonUp(0)) && !grapple.IsUnityNull())
@@ -181,12 +184,14 @@ public class PlayerController : MonoBehaviour
         } else if (grapple.IsUnityNull() || !grapple.GetComponent<Rigidbody2D>().IsUnityNull()) // Air Movement
         {
             var v = r2d.linearVelocityX;
-            v = v * moveDirection < maxSpeed ? (moveDirection * maxSpeed / airResistance) + v : v;
+            v = v * moveDirection < maxSpeed ? (moveDirection * maxSpeed / accelerationFriction) + v : v;
             //v = Mathf.Clamp((moveDirection * maxSpeed / airResistance) + v, -maxSpeed, maxSpeed);
+            v *= airResistance;
             r2d.linearVelocity = new Vector2(v, r2d.linearVelocityY);
         } else
         {
-            r2d.linearVelocityX += moveDirection * maxSpeed * 0.1f;
+            r2d.linearVelocityX += moveDirection * maxSpeed * grappleMoveReduction;
+            r2d.linearVelocityX *= airResistance;
         }
         
 
