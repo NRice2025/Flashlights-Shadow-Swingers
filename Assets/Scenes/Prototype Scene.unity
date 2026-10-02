@@ -483,6 +483,8 @@ MonoBehaviour:
   accelerationFriction: 4
   mainCamera: {fileID: 0}
   flashlight: {fileID: 1964173704}
+  grapplePrefab: {fileID: 0}
+  enableDebug: 0
   isFlashLightOn: 1
 --- !u!1 &519420028
 GameObject:

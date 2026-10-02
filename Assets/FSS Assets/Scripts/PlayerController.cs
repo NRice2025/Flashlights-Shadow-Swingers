@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.VisualScripting;
+using UnityEditor;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
@@ -15,6 +18,12 @@ public class PlayerController : MonoBehaviour
     public float accelerationFriction = 4.0f;
     public Camera mainCamera;
     public GameObject flashlight;
+
+    public GameObject grapplePrefab;
+
+    private bool canGrapple = true;
+
+    public bool enableDebug;
     bool facingRight = true;
     float moveDirection = 0;
     bool isGrounded = false;
@@ -45,6 +54,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+         // Grapple Handling
+         
+        if (Input.GetKey(KeyCode.G) || Input.GetMouseButtonDown(0) && canGrapple)
+        {
+            GameObject grapple = Instantiate(grapplePrefab) as GameObject;
+            //GameObject grappleString - TODO: IMPLIMENT THE GRAPPLE STRING 
+            grapple.GetComponent<Grapple>().directionVector = Input.mousePosition - transform.position;
+        }
         // Movement controls
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
@@ -78,7 +95,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Jumping
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && isGrounded)
         {
             r2d.linearVelocity = new Vector2(r2d.linearVelocityX, jumpHeight);
         }
