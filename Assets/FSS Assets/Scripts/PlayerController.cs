@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine.UIElements;
+using System.Runtime.CompilerServices;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
@@ -20,8 +21,10 @@ public class PlayerController : MonoBehaviour
     public GameObject flashlight;
 
     public GameObject grapplePrefab;
+    public float hookedVelocityDecay;
 
-    private bool canGrapple = true;
+    private GameObject grapple;
+    private float grappleDistance;
 
     public bool enableDebug;
     bool facingRight = true;
@@ -54,13 +57,50 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         // Grapple Handling
-         
-        if (Input.GetKey(KeyCode.G) || Input.GetMouseButtonDown(0) && canGrapple)
+        
+        // Handle swing physics somewhat
+        if (!grapple.IsUnityNull() && grapple.GetComponent<Rigidbody2D>().IsUnityNull())
         {
-            GameObject grapple = Instantiate(grapplePrefab) as GameObject;
+            Vector2 relativeGrapplePosition = transform.position - grapple.transform.position;
+            grappleDistance = Mathf.Min((relativeGrapplePosition).magnitude,grappleDistance);
+            r2d.linearVelocity = (r2d.linearVelocity - Mathf.Max(0f,Vector2.Dot(r2d.linearVelocity, relativeGrapplePosition.normalized)) * relativeGrapplePosition.normalized);
+            transform.position = relativeGrapplePosition.normalized * grappleDistance + new Vector2(grapple.transform.position.x,grapple.transform.position.y);
+            r2d.linearVelocity *= hookedVelocityDecay;
+            
+            //Debug.Log(relativeGrapplePosition);
+            Debug.Log(r2d.linearVelocity);
+            //Debug.Log(Vector2.Dot(r2d.linearVelocity, relativeGrapplePosition));
+        } else
+        {
+            grappleDistance = int.MaxValue;
+        }
+
+        // Grapple Shoot (Hold G or Left Mouse Button)
+
+        if ((Input.GetKeyDown(KeyCode.G) || Input.GetMouseButtonDown(0)) && grapple.IsUnityNull())
+        {
+            grapple = Instantiate(grapplePrefab) as GameObject;
             //GameObject grappleString - TODO: IMPLIMENT THE GRAPPLE STRING 
-            grapple.GetComponent<Grapple>().directionVector = Input.mousePosition - transform.position;
+            Vector3 pos = transform.position;
+            pos.y = pos.y + 0.3f;
+            grapple.GetComponent<Grapple>().directionVector = mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            pos.z = -1;
+            grapple.transform.position = pos;
+
+            //canGrapple = false;
+            //Invoke("allowGrapple", 1f);
+        }
+
+        // Reel In (Hold R)
+        if (Input.GetKey(KeyCode.R) && !grapple.IsUnityNull() && grapple.GetComponent<Rigidbody2D>().IsUnityNull())
+        {
+            grappleDistance = Mathf.Min((grapple.transform.position - transform.position).magnitude, grappleDistance);
+            GetComponent<Rigidbody2D>().linearVelocity = (grapple.transform.position - transform.position).normalized * 10;
+        }
+        // Destroy Grapple (Release G or Left Mouse Button)
+        if ((Input.GetKeyUp(KeyCode.G) || Input.GetMouseButtonUp(0)) && !grapple.IsUnityNull())
+        {
+            Destroy(grapple);
         }
         // Movement controls
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
@@ -109,6 +149,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        //Vector3 vec = r2d.linearVelocity;
+        //vec.y -= gravityScale * 0.1f;
+        //r2d.linearVelocity = vec;
+
         Bounds colliderBounds = mainCollider.bounds;
         float colliderRadius = mainCollider.size.x * 0.4f * Mathf.Abs(transform.localScale.x);
         Vector3 groundCheckPos = colliderBounds.min + new Vector3(colliderBounds.size.x * 0.5f, colliderRadius * 0.9f, 0);
@@ -134,11 +178,15 @@ public class PlayerController : MonoBehaviour
         if (isGrounded)
         {
             r2d.linearVelocity = new Vector2((moveDirection) * maxSpeed, r2d.linearVelocityY);
-        } else // Air Movement
+        } else if (grapple.IsUnityNull() || !grapple.GetComponent<Rigidbody2D>().IsUnityNull()) // Air Movement
         {
             var v = r2d.linearVelocityX;
             v = v * moveDirection < maxSpeed ? (moveDirection * maxSpeed / airResistance) + v : v;
+            //v = Mathf.Clamp((moveDirection * maxSpeed / airResistance) + v, -maxSpeed, maxSpeed);
             r2d.linearVelocity = new Vector2(v, r2d.linearVelocityY);
+        } else
+        {
+            r2d.linearVelocityX += moveDirection * maxSpeed * 0.1f;
         }
         
 
@@ -146,5 +194,4 @@ public class PlayerController : MonoBehaviour
         Debug.DrawLine(groundCheckPos, groundCheckPos - new Vector3(0, colliderRadius, 0), isGrounded ? Color.green : Color.red);
         Debug.DrawLine(groundCheckPos, groundCheckPos - new Vector3(colliderRadius, 0, 0), isGrounded ? Color.green : Color.red);
     }
-
 }
