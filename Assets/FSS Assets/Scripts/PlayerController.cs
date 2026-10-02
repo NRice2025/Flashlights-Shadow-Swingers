@@ -14,10 +14,12 @@ public class PlayerController : MonoBehaviour
     public float airResistance = 2.0f;
     public float accelerationFriction = 4.0f;
     public Camera mainCamera;
-
+    public GameObject flashlight;
     bool facingRight = true;
     float moveDirection = 0;
     bool isGrounded = false;
+
+    public bool isFlashLightOn = true;
     Vector3 cameraPos;
     Rigidbody2D r2d;
     CapsuleCollider2D mainCollider;
@@ -66,6 +68,13 @@ public class PlayerController : MonoBehaviour
                 facingRight = false;
                 t.localScale = new Vector3(-Mathf.Abs(t.localScale.x), t.localScale.y, t.localScale.z);
             }
+        }
+
+         // Toggle flashlight
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            isFlashLightOn = !isFlashLightOn;
+            flashlight.SetActive(isFlashLightOn);
         }
 
         // Jumping
