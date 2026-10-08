@@ -19,12 +19,12 @@ public class PlayerController : MonoBehaviour
     public float accelerationFriction = 4.0f;
     public Camera mainCamera;
     public GameObject flashlight;
-
     public GameObject grapplePrefab;
     public float hookedVelocityDecay;
     public float grappleMoveReduction = 0.02f;
     public float reelVelocity = 0.2f;
-
+    public BoxCollider2D wireCollider;
+    public GameObject spawnPoint;
     private GameObject grapple;
     private float grappleDistance;
 
@@ -38,10 +38,12 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D r2d;
     CapsuleCollider2D mainCollider;
     Transform t;
+    
 
     // Use this for initialization
     void Start()
     {
+        Spawn();
         t = transform;
         r2d = GetComponent<Rigidbody2D>();
         mainCollider = GetComponent<CapsuleCollider2D>();
@@ -56,6 +58,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void Spawn() 
+    {
+        transform.position = spawnPoint.transform.position;
+    }
+    void Death()
+    {
+        transform.position = spawnPoint.transform.position;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -147,6 +157,12 @@ public class PlayerController : MonoBehaviour
         if (mainCamera)
         {
             mainCamera.transform.position = new Vector3(t.position.x, t.position.y + 2.0f, cameraPos.z);
+        }
+
+        // Wire Collision/death
+        if(transform.position.y < -10 || mainCollider.bounds.Intersects(wireCollider.bounds))
+        {
+            Death();
         }
     }
 
