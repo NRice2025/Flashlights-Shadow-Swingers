@@ -19,13 +19,13 @@ public class PlayerController : MonoBehaviour
     public float accelerationFriction = 4.0f;
     public Camera mainCamera;
     public GameObject flashlight;
-
     public GameObject grapplePrefab;
     public GameObject tetherPrefab;
     public float hookedVelocityDecay;
     public float grappleMoveReduction = 0.02f;
     public float reelVelocity = 0.2f;
 
+    public GameObject spawnPoint;
     private GameObject grapple;
 
     private GameObject tether;
@@ -41,10 +41,12 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D r2d;
     CapsuleCollider2D mainCollider;
     Transform t;
+    
 
     // Use this for initialization
     void Start()
     {
+        Spawn(spawnPoint.transform.position);
         t = transform;
         r2d = GetComponent<Rigidbody2D>();
         mainCollider = GetComponent<CapsuleCollider2D>();
@@ -57,6 +59,15 @@ public class PlayerController : MonoBehaviour
         {
             cameraPos = mainCamera.transform.position;
         }
+    }
+
+     public void Spawn(Vector3 spawnPosition) 
+    {
+        transform.position = spawnPosition;
+    }
+    public void Death(Vector3 spawnPosition)
+    {
+        Spawn(spawnPosition);
     }
 
     // Update is called once per frame
@@ -169,8 +180,23 @@ public class PlayerController : MonoBehaviour
         {
             mainCamera.transform.position = new Vector3(t.position.x, t.position.y + 2.0f, cameraPos.z);
         }
+
+        // Death
+        if (transform.position.y < -20f)
+        {
+            Death(spawnPoint.transform.position);
+        }
+
+
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Wire")
+        {
+            Death(spawnPoint.transform.position);
+        }
+    }
     void FixedUpdate()
     {
         //Vector3 vec = r2d.linearVelocity;
