@@ -540,6 +540,7 @@ MonoBehaviour:
   mainCamera: {fileID: 519420031}
   flashlight: {fileID: 1964173704}
   grapplePrefab: {fileID: 8929527089592985571, guid: 5ea6d6c1ff72a034882e6e77e409f2c1, type: 3}
+  tetherPrefab: {fileID: 4137505842624777744, guid: 40cfe86c97bc3064096c7d75a77d9a8e, type: 3}
   hookedVelocityDecay: 1
   grappleMoveReduction: 0.045
   reelVelocity: 8
@@ -20270,6 +20271,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1601055458
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -1453767332173202640, guid: 40cfe86c97bc3064096c7d75a77d9a8e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535314032417642580, guid: 40cfe86c97bc3064096c7d75a77d9a8e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -18.756134
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535314032417642580, guid: 40cfe86c97bc3064096c7d75a77d9a8e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.1892532
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535314032417642580, guid: 40cfe86c97bc3064096c7d75a77d9a8e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535314032417642580, guid: 40cfe86c97bc3064096c7d75a77d9a8e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9063079
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535314032417642580, guid: 40cfe86c97bc3064096c7d75a77d9a8e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535314032417642580, guid: 40cfe86c97bc3064096c7d75a77d9a8e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535314032417642580, guid: 40cfe86c97bc3064096c7d75a77d9a8e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.42261827
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535314032417642580, guid: 40cfe86c97bc3064096c7d75a77d9a8e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535314032417642580, guid: 40cfe86c97bc3064096c7d75a77d9a8e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535314032417642580, guid: 40cfe86c97bc3064096c7d75a77d9a8e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137505842624777744, guid: 40cfe86c97bc3064096c7d75a77d9a8e, type: 3}
+      propertyPath: m_Name
+      value: LightTether_0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 0}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 40cfe86c97bc3064096c7d75a77d9a8e, type: 3}
 --- !u!1 &1664665820
 GameObject:
   m_ObjectHideFlags: 0
@@ -21258,3 +21321,4 @@ SceneRoots:
   - {fileID: 1028015386}
   - {fileID: 316782658}
   - {fileID: 467984908}
+  - {fileID: 1601055458}
