@@ -73,24 +73,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Handle Tether
-        if (!grapple.IsUnityNull() && tether.IsUnityNull())
-        {
-            GameObject tether = Instantiate(tetherPrefab) as GameObject;
-            tether.GetComponent<Tether>().owner = this.GameObject();
-            tether.GetComponent<Tether>().hook = grapple;
-            Vector3 pos = transform.position;
-            pos.y += 0.3f;
-            tether.transform.position = pos;
-        }
-        if (!tether.IsUnityNull())
-        {
-            tether.transform.position = transform.position;
-            if (grapple.IsUnityNull())
-            {
-                tether.GetComponent<Tether>().destroyAll();
-            }
-        }
+        
         
 
         // Handle swing physics somewhat
@@ -137,6 +120,28 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(grapple);
         }
+
+        // Handle Tether
+        if (!grapple.IsUnityNull() && tether.IsUnityNull())
+        {
+            tether = Instantiate(tetherPrefab) as GameObject;
+            tether.GetComponent<Tether>().owner = this.GameObject();
+            tether.GetComponent<Tether>().hook = grapple;
+            Vector3 pos = transform.position;
+            pos.y += 0.3f;
+            tether.transform.position = pos;
+        }
+        if (!tether.IsUnityNull())
+        {
+            Vector3 pos = transform.position;
+            pos.y += 0.3f;
+            tether.transform.position = pos;
+            if (grapple.IsUnityNull())
+            {
+                tether.GetComponent<Tether>().destroyAll();
+            }
+        }
+
         // Movement controls
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
@@ -214,7 +219,7 @@ public class PlayerController : MonoBehaviour
         {
             for (int i = 0; i < colliders.Length; i++)
             {
-                if (colliders[i] != mainCollider)
+                if (colliders[i] != mainCollider && colliders[i].tag != "NotGround")
                 {
                     isGrounded = true;
                     break;

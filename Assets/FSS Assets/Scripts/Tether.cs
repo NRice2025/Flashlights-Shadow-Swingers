@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,10 +13,17 @@ public class Tether : MonoBehaviour
     private GameObject tetherChild = null;
 
     public bool isRootTether = false;
+
+    private bool isOnHook = false;
+
+    Vector3 unitDirection;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        if (hook.IsUnityNull())
+        {
+            //Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -26,23 +34,25 @@ public class Tether : MonoBehaviour
             transform.position = owner.transform.position;
         }
 
-        Vector3 unitDirection = (hook.transform.position - transform.position).normalized;
+        unitDirection = (hook.transform.position - transform.position).normalized;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, unitDirection);
-    }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (tetherChild.IsUnityNull())
-        {
-            tetherChild = Instantiate(tetherPrefab) as GameObject;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
         if (!tetherChild.IsUnityNull())
         {
-            //Destroy(tetherChild);
+            Vector3 pos = transform.position;
+            pos = unitDirection * 0.31f + pos;
+            tetherChild.transform.position = pos;
+        }
+
+        if (Mathf.Abs((hook.transform.position - transform.position).magnitude) > 0.31f && tetherChild.IsUnityNull())
+        {
+            tetherChild = Instantiate(tetherPrefab) as GameObject;
+            tetherChild.GetComponent<Tether>().hook = hook;
+            tetherChild.GetComponent<Tether>().owner = owner;
+        }
+        if (Mathf.Abs((hook.transform.position - transform.position).magnitude) < 0.31f && !tetherChild.IsUnityNull())
+        {
+            tetherChild.GetComponent<Tether>().destroyAll();
         }
     }
 
@@ -52,6 +62,6 @@ public class Tether : MonoBehaviour
         {
             tetherChild.GetComponent<Tether>().destroyAll();
         }
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

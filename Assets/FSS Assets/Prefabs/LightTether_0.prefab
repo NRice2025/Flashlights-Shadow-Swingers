@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5494642756947215279}
   - component: {fileID: -1453767332173202640}
   - component: {fileID: -4245736830790002678}
-  m_Layer: 0
+  - component: {fileID: 5042274361456842372}
+  m_Layer: 5
   m_Name: LightTether_0
-  m_TagString: Untagged
+  m_TagString: NotGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,14 +82,14 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -7388694423050805477, guid: dec3c72ae34f65845a3b083ae9188b60, type: 3}
+  m_Sprite: {fileID: 8914937776211051521, guid: 4551f46e5a0b85e468e0c86b130f8438, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.3, y: 0.1}
+  m_Size: {x: 0.08, y: 0.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -131,9 +132,9 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.3, y: 0.1}
-    newSize: {x: 0.3, y: 0.1}
+    pivot: {x: 0.37499997, y: 0}
+    oldSize: {x: 0.08, y: 0.3}
+    newSize: {x: 0.08, y: 0.3}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -156,3 +157,26 @@ MonoBehaviour:
   hook: {fileID: 0}
   tetherPrefab: {fileID: 4137505842624777744}
   collider: {fileID: -1453767332173202640}
+  isRootTether: 0
+--- !u!95 &5042274361456842372
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4137505842624777744}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: -3204680037255399493, guid: 4551f46e5a0b85e468e0c86b130f8438, type: 3}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
