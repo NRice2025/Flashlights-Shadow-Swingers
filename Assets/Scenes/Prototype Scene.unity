@@ -604,7 +604,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -672,6 +672,7 @@ MonoBehaviour:
   mainCamera: {fileID: 519420031}
   flashlight: {fileID: 1964173704}
   grapplePrefab: {fileID: 8929527089592985571, guid: 5ea6d6c1ff72a034882e6e77e409f2c1, type: 3}
+  tetherPrefab: {fileID: 4137505842624777744, guid: 40cfe86c97bc3064096c7d75a77d9a8e, type: 3}
   hookedVelocityDecay: 1
   grappleMoveReduction: 0.045
   reelVelocity: 8

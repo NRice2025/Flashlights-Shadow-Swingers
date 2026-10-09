@@ -20,12 +20,15 @@ public class PlayerController : MonoBehaviour
     public Camera mainCamera;
     public GameObject flashlight;
     public GameObject grapplePrefab;
+    public GameObject tetherPrefab;
     public float hookedVelocityDecay;
     public float grappleMoveReduction = 0.02f;
     public float reelVelocity = 0.2f;
 
     public GameObject spawnPoint;
     private GameObject grapple;
+
+    private GameObject tether;
     private float grappleDistance;
 
     public bool enableDebug;
@@ -71,6 +74,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         
+        
+
         // Handle swing physics somewhat
         if (!grapple.IsUnityNull() && grapple.GetComponent<Rigidbody2D>().IsUnityNull())
         {
@@ -93,7 +98,6 @@ public class PlayerController : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.G) || Input.GetMouseButtonDown(0)) && grapple.IsUnityNull())
         {
             grapple = Instantiate(grapplePrefab) as GameObject;
-            //GameObject grappleString - TODO: IMPLIMENT THE GRAPPLE STRING 
             Vector3 pos = transform.position;
             pos.y = pos.y + 0.3f;
             grapple.GetComponent<Grapple>().directionVector = mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
@@ -116,6 +120,28 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(grapple);
         }
+
+        // Handle Tether
+        if (!grapple.IsUnityNull() && tether.IsUnityNull())
+        {
+            tether = Instantiate(tetherPrefab) as GameObject;
+            tether.GetComponent<Tether>().owner = this.GameObject();
+            tether.GetComponent<Tether>().hook = grapple;
+            Vector3 pos = transform.position;
+            pos.y += 0.3f;
+            tether.transform.position = pos;
+        }
+        if (!tether.IsUnityNull())
+        {
+            Vector3 pos = transform.position;
+            pos.y += 0.3f;
+            tether.transform.position = pos;
+            if (grapple.IsUnityNull())
+            {
+                tether.GetComponent<Tether>().destroyAll();
+            }
+        }
+
         // Movement controls
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
@@ -193,7 +219,7 @@ public class PlayerController : MonoBehaviour
         {
             for (int i = 0; i < colliders.Length; i++)
             {
-                if (colliders[i] != mainCollider)
+                if (colliders[i] != mainCollider && colliders[i].tag != "NotGround")
                 {
                     isGrounded = true;
                     break;
