@@ -12,10 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
   m_Name: SparkingWireCeiling
   m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.Tilemaps.AnimatedTile
-  m_AnimatedSprites: []
-  m_MinSpeed: 1
-  m_MaxSpeed: 1
+  m_AnimatedSprites:
+  - {fileID: -2762204428448175657, guid: d6ef73ef3d17fbc489d30336b405f11d, type: 3}
+  - {fileID: 3468521081756137758, guid: d6ef73ef3d17fbc489d30336b405f11d, type: 3}
+  - {fileID: -4703765782688246066, guid: d6ef73ef3d17fbc489d30336b405f11d, type: 3}
+  - {fileID: -6898416065560669392, guid: d6ef73ef3d17fbc489d30336b405f11d, type: 3}
+  - {fileID: -8074313690138966366, guid: d6ef73ef3d17fbc489d30336b405f11d, type: 3}
+  m_MinSpeed: 8
+  m_MaxSpeed: 8
   m_AnimationStartTime: 0
   m_AnimationStartFrame: 0
-  m_TileColliderType: 0
+  m_TileColliderType: 2
   m_TileAnimationFlags: 0
