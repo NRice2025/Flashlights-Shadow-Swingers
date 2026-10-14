@@ -65,8 +65,9 @@ public class PlayerController : MonoBehaviour
     {
         transform.position = spawnPosition;
     }
-    public void Death(Vector3 spawnPosition)
+    public async void Death(Vector3 spawnPosition)
     {
+        await System.Threading.Tasks.Task.Delay(1000);
         Spawn(spawnPosition);
     }
 
@@ -199,6 +200,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.tag == "Wire")
         {
+
             Death(spawnPoint.transform.position);
         }
     }
