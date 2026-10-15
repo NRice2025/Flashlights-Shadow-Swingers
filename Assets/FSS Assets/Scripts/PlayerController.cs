@@ -271,7 +271,7 @@ public class PlayerController : MonoBehaviour
         // Disallow movement during death / cutscene
         if (!canMove)
         {
-            r2d.linearVelocity = Vector2.zero;
+            r2d.linearVelocityX = 0;
         }
 
         // Simple debug
