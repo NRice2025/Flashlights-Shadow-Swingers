@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     float moveDirection = 0;
     bool isGrounded = false;
 
+    int survivorsCollected = 0;
+
     public bool isFlashLightOn = true;
     Vector3 cameraPos;
     Rigidbody2D r2d;
@@ -46,6 +48,11 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (mainCamera.IsUnityNull())
+        {
+            mainCamera = Camera.main;
+        }
+
         Spawn(spawnPoint.transform.position);
         t = transform;
         r2d = GetComponent<Rigidbody2D>();
@@ -69,6 +76,11 @@ public class PlayerController : MonoBehaviour
     {
         await System.Threading.Tasks.Task.Delay(1000);
         Spawn(spawnPosition);
+    }
+
+    public void CollectSurvivor()
+    {
+        survivorsCollected += 1;
     }
 
     // Update is called once per frame
