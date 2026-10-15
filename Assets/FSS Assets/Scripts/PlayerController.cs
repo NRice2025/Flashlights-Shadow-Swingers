@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     float moveDirection = 0;
     bool isGrounded = false;
 
+    bool canMove = true;
+
     int survivorsCollected = 0;
 
     public bool isFlashLightOn = true;
@@ -74,7 +76,13 @@ public class PlayerController : MonoBehaviour
     }
     public async void Death(Vector3 spawnPosition)
     {
+        canMove = false;
         await System.Threading.Tasks.Task.Delay(1000);
+        canMove = true;
+        if (!grapple.IsUnityNull())
+        {
+            Destroy(grapple);
+        }
         Spawn(spawnPosition);
     }
 
@@ -260,6 +268,11 @@ public class PlayerController : MonoBehaviour
             r2d.linearVelocityX *= airResistance;
         }
         
+        // Disallow movement during death / cutscene
+        if (!canMove)
+        {
+            r2d.linearVelocity = Vector2.zero;
+        }
 
         // Simple debug
         Debug.DrawLine(groundCheckPos, groundCheckPos - new Vector3(0, colliderRadius, 0), isGrounded ? Color.green : Color.red);
