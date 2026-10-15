@@ -272,6 +272,7 @@ public class PlayerController : MonoBehaviour
         if (!canMove)
         {
             r2d.linearVelocityX = 0;
+            r2d.linearVelocityY = 0;
         }
 
         // Simple debug
