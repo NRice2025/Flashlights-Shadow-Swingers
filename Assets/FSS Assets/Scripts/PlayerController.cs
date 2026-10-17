@@ -34,7 +34,9 @@ public class PlayerController : MonoBehaviour
     public bool enableDebug;
     bool facingRight = true;
     float moveDirection = 0;
-    bool isGrounded = false;
+    bool isGrounded;
+
+    private Animator animator;
 
     bool canMove = true;
 
@@ -56,6 +58,7 @@ public class PlayerController : MonoBehaviour
         }
 
         Spawn(spawnPoint.transform.position);
+        Time.timeScale = 1f;
         t = transform;
         r2d = GetComponent<Rigidbody2D>();
         mainCollider = GetComponent<CapsuleCollider2D>();
@@ -68,6 +71,9 @@ public class PlayerController : MonoBehaviour
         {
             cameraPos = mainCamera.transform.position;
         }
+        animator = GetComponent<Animator>();
+        animator.SetBool("isWalking", false);
+        animator.SetBool("isJumping", false);
     }
 
      public void Spawn(Vector3 spawnPosition) 
@@ -77,12 +83,15 @@ public class PlayerController : MonoBehaviour
     public async void Death(Vector3 spawnPosition)
     {
         canMove = false;
-        await System.Threading.Tasks.Task.Delay(1000);
+        await System.Threading.Tasks.Task.Delay(1500);
         canMove = true;
         if (!grapple.IsUnityNull())
         {
             Destroy(grapple);
         }
+
+        Time.timeScale = 0f;
+        // prompt the player to press a key to respawn
         Spawn(spawnPosition);
     }
 
@@ -163,14 +172,25 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+         if (!isGrounded)
+        {
+            animator.SetBool("isJumping", true);
+        }
+        else
+        {
+            animator.SetBool("isJumping", false);
+        }
+
         // Movement controls
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
+            animator.SetBool("isWalking", true);
         }
         else
         {
             moveDirection = 0;
+            animator.SetBool("isWalking", false);
         }
 
         // Change facing direction
@@ -199,7 +219,10 @@ public class PlayerController : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && isGrounded)
         {
             r2d.linearVelocity = new Vector2(r2d.linearVelocityX, jumpHeight);
+            animator.SetBool("isJumping", true);
+            animator.SetBool("isWalking", false);
         }
+          
 
         // Camera follow
         if (mainCamera)

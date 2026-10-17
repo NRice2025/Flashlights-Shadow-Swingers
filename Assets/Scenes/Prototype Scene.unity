@@ -21772,6 +21772,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4867807487429557718, guid: f0316bc94f0be974cb3013c40df463ce, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 19592559c4404da4fa33fa9904503571, type: 2}
     - target: {fileID: 8300615742984256941, guid: f0316bc94f0be974cb3013c40df463ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: -23.13
@@ -21839,6 +21843,10 @@ PrefabInstance:
     - target: {fileID: 9197214885089888985, guid: f0316bc94f0be974cb3013c40df463ce, type: 3}
       propertyPath: reelVelocity
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197214885089888985, guid: f0316bc94f0be974cb3013c40df463ce, type: 3}
+      propertyPath: isFlashLightOn
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9197214885089888985, guid: f0316bc94f0be974cb3013c40df463ce, type: 3}
       propertyPath: hookedVelocityDecay
