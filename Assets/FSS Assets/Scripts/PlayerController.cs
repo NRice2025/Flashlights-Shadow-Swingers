@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator animator;
 
-    bool canMove = true;
+    public bool canMove = true;
 
     int survivorsCollected = 0;
 
@@ -83,14 +83,13 @@ public class PlayerController : MonoBehaviour
     public async void Death(Vector3 spawnPosition)
     {
         canMove = false;
-        await System.Threading.Tasks.Task.Delay(1500);
+        await System.Threading.Tasks.Task.Delay(225);
         canMove = true;
         if (!grapple.IsUnityNull())
         {
             Destroy(grapple);
         }
 
-        Time.timeScale = 0f;
         // prompt the player to press a key to respawn
         Spawn(spawnPosition);
     }
