@@ -58,7 +58,6 @@ public class PlayerController : MonoBehaviour
         }
 
         Spawn(spawnPoint.transform.position);
-        Time.timeScale = 1f;
         t = transform;
         r2d = GetComponent<Rigidbody2D>();
         mainCollider = GetComponent<CapsuleCollider2D>();
@@ -78,6 +77,7 @@ public class PlayerController : MonoBehaviour
 
      public void Spawn(Vector3 spawnPosition) 
     {
+        Time.timeScale = 1f;
         transform.position = spawnPosition;
     }
     public async void Death(Vector3 spawnPosition)
@@ -90,8 +90,14 @@ public class PlayerController : MonoBehaviour
             Destroy(grapple);
         }
 
+         Time.timeScale = 0f;
         // prompt the player to press a key to respawn
-        Spawn(spawnPosition);
+        while (!Input.anyKeyDown)
+        {
+          await System.Threading.Tasks.Task.Delay(1);
+        }
+        Spawn(spawnPosition); 
+        
     }
 
     public void CollectSurvivor()
@@ -102,9 +108,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
-
         // Handle swing physics somewhat
         if (!grapple.IsUnityNull() && grapple.GetComponent<Rigidbody2D>().IsUnityNull())
         {
@@ -184,7 +187,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
-            animator.SetBool("isWalking", true);
+            if (animator.GetBool("isJumping") == false)
+            {
+                animator.SetBool("isWalking", true);
+            } else
+            {
+                animator.SetBool("isWalking", false);
+            }
         }
         else
         {
