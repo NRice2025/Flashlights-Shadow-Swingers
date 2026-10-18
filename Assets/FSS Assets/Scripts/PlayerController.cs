@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     public float grappleMoveReduction = 0.02f;
     public float reelVelocity = 0.2f;
 
-    public GameObject spawnPoint;
+    Vector3 spawnPoint;
     private GameObject grapple;
 
     private GameObject tether;
@@ -57,7 +57,8 @@ public class PlayerController : MonoBehaviour
             mainCamera = Camera.main;
         }
 
-        Spawn(spawnPoint.transform.position);
+        spawnPoint = GameObject.Find("Spawn").transform.position;
+        Spawn(spawnPoint);
         t = transform;
         r2d = GetComponent<Rigidbody2D>();
         mainCollider = GetComponent<CapsuleCollider2D>();
@@ -241,7 +242,7 @@ public class PlayerController : MonoBehaviour
         // Death
         if (transform.position.y < -20f)
         {
-            Death(spawnPoint.transform.position);
+            Death(spawnPoint);
         }
 
 
@@ -252,7 +253,12 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Wire")
         {
 
-            Death(spawnPoint.transform.position);
+            Death(spawnPoint);
+        }
+
+        if (collision.tag == "Checkpoint")
+        {
+            spawnPoint = collision.gameObject.transform.position;
         }
     }
     void FixedUpdate()
