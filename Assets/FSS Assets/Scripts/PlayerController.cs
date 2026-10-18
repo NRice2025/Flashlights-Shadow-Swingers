@@ -187,7 +187,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
-            animator.SetBool("isWalking", true);
+            if (animator.GetBool("isJumping") == false)
+            {
+                animator.SetBool("isWalking", true);
+            } else
+            {
+                animator.SetBool("isWalking", false);
+            }
         }
         else
         {
