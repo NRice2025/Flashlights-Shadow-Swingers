@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine.UIElements;
 using System.Runtime.CompilerServices;
+using TMPro;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public GameObject flashlight;
     public GameObject grapplePrefab;
     public GameObject tetherPrefab;
+    public GameObject collectableText;
     public float hookedVelocityDecay;
     public float grappleMoveReduction = 0.02f;
     public float reelVelocity = 0.2f;
@@ -104,6 +106,7 @@ public class PlayerController : MonoBehaviour
     public void CollectSurvivor()
     {
         survivorsCollected += 1;
+        collectableText.GetComponent<TMP_Text>().text = "Survivors Saved: " + survivorsCollected.ToString();
     }
 
     // Update is called once per frame

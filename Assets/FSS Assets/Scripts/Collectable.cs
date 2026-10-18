@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class Collectable : MonoBehaviour
 {
-    public GameObject player;
+    GameObject player;
     PlayerController controller;
 
     void Start()
     {
+        player = GameObject.Find("Player");
         controller = player.GetComponent<PlayerController>();
     }
 
