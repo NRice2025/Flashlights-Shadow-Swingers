@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
     public async void Death(Vector3 spawnPosition)
     {
         canMove = false;
-        await System.Threading.Tasks.Task.Delay(225);
+        await System.Threading.Tasks.Task.Delay(205);
         canMove = true;
         if (!grapple.IsUnityNull())
         {
