@@ -263,6 +263,10 @@ public class PlayerController : MonoBehaviour
         {
             spawnPoint = collision.gameObject.transform.position;
         }
+        if (collision.tag == "Win")
+        {
+            GameObject.Find("Win").GetComponent<TMP_Text>().text = "You Win! Thanks for playing the demo for\n          Flashlights: Shadow Swingers!";
+        }
     }
     void FixedUpdate()
     {
