@@ -266,7 +266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 51377453}
   - component: {fileID: 51377452}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -496,7 +496,7 @@ GameObject:
   m_Component:
   - component: {fileID: 179492997}
   - component: {fileID: 179492996}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -603,7 +603,7 @@ GameObject:
   m_Component:
   - component: {fileID: 208749033}
   - component: {fileID: 208749032}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -711,7 +711,7 @@ GameObject:
   m_Component:
   - component: {fileID: 223556438}
   - component: {fileID: 223556437}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1259,7 +1259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 320293392}
   - component: {fileID: 320293391}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1367,7 +1367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 340785783}
   - component: {fileID: 340785782}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1640,7 +1640,7 @@ GameObject:
   m_Component:
   - component: {fileID: 414070670}
   - component: {fileID: 414070669}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2315,7 +2315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 547517242}
   - component: {fileID: 547517241}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2726,7 +2726,7 @@ GameObject:
   m_Component:
   - component: {fileID: 711035008}
   - component: {fileID: 711035007}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2899,7 +2899,7 @@ GameObject:
   m_Component:
   - component: {fileID: 738920009}
   - component: {fileID: 738920008}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3072,7 +3072,7 @@ GameObject:
   m_Component:
   - component: {fileID: 855379267}
   - component: {fileID: 855379266}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3289,7 +3289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 987340153}
   - component: {fileID: 987340152}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3519,7 +3519,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1081487251}
   - component: {fileID: 1081487250}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139137,7 +139137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1361990669}
   - component: {fileID: 1361990668}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139413,7 +139413,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1403179738}
   - component: {fileID: 1403179737}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139521,7 +139521,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1449557672}
   - component: {fileID: 1449557671}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139694,7 +139694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1453649956}
   - component: {fileID: 1453649955}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139801,7 +139801,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1455655073}
   - component: {fileID: 1455655072}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140184,7 +140184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1577677077}
   - component: {fileID: 1577677076}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140696,7 +140696,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1676580473}
   - component: {fileID: 1676580472}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140934,7 +140934,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1746033803}
   - component: {fileID: 1746033802}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141042,7 +141042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1751512678}
   - component: {fileID: 1751512677}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141211,7 +141211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1806264653}
   - component: {fileID: 1806264652}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141455,7 +141455,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1850054609}
   - component: {fileID: 1850054608}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141987,7 +141987,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2000929250}
   - component: {fileID: 2000929249}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147133,7 +147133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2069254958}
   - component: {fileID: 2069254957}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Freeform Light 2D (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
